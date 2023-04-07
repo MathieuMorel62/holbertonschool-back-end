@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     with open(csv_file, mode='w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        for task in todo_data:
+        for task in sorted(todo_data, key=lambda x: x['title']):
             task_completed = task['completed']
             task_titl = task['title']
             csv_writer.writerow([user_id, username, task_completed, task_titl])
