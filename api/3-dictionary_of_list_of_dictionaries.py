@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Script to export data in the JSON format."""
-import requests
 import json
+import requests
 
 API_URL = 'https://jsonplaceholder.typicode.com'
 
@@ -28,5 +28,3 @@ if __name__ == '__main__':
     # Write to JSON file
     with open("todo_all_employees.json", mode='w') as json_file:
         json.dump(task_by_user, json_file)
-
-    print("Data has been exported to todo_all_employees.json")
