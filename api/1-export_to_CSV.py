@@ -5,10 +5,11 @@ import csv
 from sys import argv
 
 API_URL = 'https://jsonplaceholder.typicode.com'
-USER_ID = argv[1]
 
 
 if __name__ == '__main__':
+    USER_ID = argv[1]
+
     # User information
     user_response = requests.get(f"{API_URL}/users/{USER_ID}").json()
 
