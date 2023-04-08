@@ -16,16 +16,19 @@ if __name__ == '__main__':
     todo_response = requests.get(f"{API_URL}/todos?userId={argv[1]}")
     todo_data = todo_response.json()
 
-    # Prepare the CSV file
-    user_id = user_data['id']
-    username = user_data['username']
-    csv_file = f"{user_id}.csv"
+    # Filter completed tasks
+    task_completed = [task for task in todo_data if task['completed']]
 
-    with open(csv_file, mode='w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        for task in sorted(todo_data, key=lambda x: x['title']):
-            task_completed = task['completed']
-            task_titl = task['title']
-            csv_writer.writerow([user_id, username, task_completed, task_titl])
+    # Write to CSV file
+    with open(f"{argv[1]}.csv", mode='w') as csv_file:
+        writer = csv.writer(csv_file)
 
-    print(f"Data has been exported to {csv_file}")
+        for task in todo_data:
+            writer.writerow([
+                user_data['id'],
+                user_data['username'],
+                task['completed'],
+                task['title']
+            ])
+
+    print(f"Data has been exported to {argv[1]}.csv")
