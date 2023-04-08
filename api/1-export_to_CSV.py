@@ -5,30 +5,23 @@ import csv
 from sys import argv
 
 API_URL = 'https://jsonplaceholder.typicode.com'
-
+USER_ID = argv[1]
 
 if __name__ == '__main__':
     # User information
-    user_response = requests.get(f"{API_URL}/users/{argv[1]}")
-    user_data = user_response.json()
+    user_response = requests.get(f"{API_URL}/users/{USER_ID}").json()
 
     # Todo list for the given user
-    todo_response = requests.get(f"{API_URL}/todos?userId={argv[1]}")
-    todo_data = todo_response.json()
-
-    # Filter completed tasks
-    task_completed = [task for task in todo_data if task['completed']]
+    todo_response = requests.get(f"{API_URL}/todos?userId={USER_ID}").json()
 
     # Write to CSV file
-    with open(f"{argv[1]}.csv", mode='w') as csv_file:
-        writer = csv.writer(csv_file)
+    with open(f"{USER_ID}.csv", mode='w') as csv_file:
+        writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
 
-        for task in todo_data:
-            writer.writerow({
-                user_data['id'],
-                user_data['username'],
+        for task in todo_response:
+            writer.writerow([
+                user_response['id'],
+                user_response['username'],
                 task['completed'],
                 task['title']
-            })
-
-    print(f"Data has been exported to {argv[1]}.csv")
+            ])
