@@ -1,5 +1,5 @@
 # <p align=center> holbertonschool-back-end</p>
-<img src='https://www.objetconnecte.com/wp-content/uploads/2020/10/api.jpg' width='100%'>
+<img src='https://dizibrand.com/wp-content/uploads/2021/07/backend-developer-dizibrand.png' width='100%'>
 
 ## Description
 ### What is an API ?
