@@ -24,11 +24,11 @@ if __name__ == '__main__':
         writer = csv.writer(csv_file)
 
         for task in todo_data:
-            writer.writerow([
+            writer.writerow({
                 user_data['id'],
                 user_data['username'],
                 task['completed'],
                 task['title']
-            ])
+            })
 
     print(f"Data has been exported to {argv[1]}.csv")
