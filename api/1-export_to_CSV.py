@@ -27,5 +27,5 @@ if __name__ == '__main__':
                 task['completed'],
                 task['title']
             ])
-            
+   
     print(f"Data has been exported to {USER_ID}.csv")
